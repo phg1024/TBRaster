@@ -7,13 +7,15 @@
 #include "glm/glm.hpp"
 
 class Camera {
-public:
-    Camera() = default;
+ public:
+  Camera() = default;
 
-    glm::fmat3x3 intrinsicsMatrix() const;
-    glm::fmat4x4 extrinsicsMatrix() const;
+  glm::fmat3x3 getIntrinsicMatrix() const;
+  glm::fmat4x4 getExtrinsicMatrix() const;
 
-private:
-    glm::ivec2 resolution;
-    glm::fvec2 focal_length;
+ private:
+  glm::ivec2 resolution;
+  glm::fvec2 principal_point;
+  glm::fvec2 focal_length;
+  glm::mat4x4 extrinsics;
 };
