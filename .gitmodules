@@ -1,6 +1,6 @@
 [submodule "glm"]
-	path = glm
-	url = ./third_party/glm
+	path = third_party/glm
+	url = https://github.com/g-truc/glm
 [submodule "stb"]
-	path = stb
-	url = ./third_party/stb
+	path = third_party/stb
+	url = https://github.com/nothings/stb
