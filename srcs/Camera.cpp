@@ -4,10 +4,12 @@
 
 #include "Camera.h"
 
-glm::fmat3x3 Camera::getIntrinsicMatrix() const {
-  return glm::fmat3x3(glm::fvec3(focal_length.x, 0, 0),
-                      glm::fvec3(0, focal_length.y, 0),
-                      glm::fvec3(principal_point.x, principal_point.y, 1));
+Camera::Matrix3x3f Camera::getIntrinsicMatrix() const {
+  Matrix3x3f matrix = Matrix3x3f::Zero();
+  matrix << focal_length[0], 0, principal_point[0],
+            0, focal_length[1], principal_point[1],
+            0, 0, 1;
+  return matrix;
 }
 
-glm::fmat4x4 Camera::getExtrinsicMatrix() const { return extrinsics; }
+Camera::Matrix4x4f Camera::getExtrinsicMatrix() const { return extrinsics; }

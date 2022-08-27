@@ -3,38 +3,17 @@
 //
 
 #pragma once
-#include "glm/glm.hpp"
+#include "Defs.h"
 #include <vector>
+#include "BoundingBox.h"
 
 template <typename T, uint32_t D> struct Triangle {
-  glm::vec<D, T> v[3];
+  VectorX<D, T> v[3];
+
+  bool overlaps(const BoundingBox<T, D>& bbox) const {
+    return false;
+  }
 };
 
 using Triangle2DF = Triangle<float, 2>;
 using Triangle3DF = Triangle<float, 3>;
-
-template <typename T, uint32_t D> class Triangles {
-public:
-  Triangles() = default;
-  Triangles(size_t num_triangles)
-      : num_triangles(num_triangles), data(D * num_triangles) {}
-
-  size_t getNumTriangles() const {
-    return num_triangles;
-  }
-
-  const std::vector<T>& getData() const {
-    return data;
-  }
-
-  std::vector<T>& getData() {
-    return data;
-  }
-
-private:
-  size_t num_triangles{0};
-  std::vector<T> data;
-};
-
-using Triangles2DF = Triangles<float, 2>;
-using Triangles3DF = Triangles<float, 3>;

@@ -5,22 +5,24 @@
 #pragma once
 
 #include "Pixel.h"
-#include "glm/glm.hpp"
+#include "Defs.h"
 #include <vector>
 
 template <typename PixelType> class Image {
 public:
+  using Vector2i = Vector2<int>;
+
   Image() = default;
   Image(int width, int height) : size(width, height) {
     pixels.resize(width * height);
   }
-  glm::ivec2 getSize() const { return size; }
+  Vector2i getSize() const { return size; }
 
   std::vector<PixelType> &getPixels() { return pixels; }
   const std::vector<PixelType> &getPixels() const { return pixels; }
 
 private:
-  glm::ivec2 size;
+  Vector2i size;
   std::vector<PixelType> pixels;
 };
 

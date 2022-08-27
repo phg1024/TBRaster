@@ -4,21 +4,26 @@
 
 #pragma once
 
-#include "glm/glm.hpp"
+#include "Defs.h"
 
 class Camera {
 public:
+  using Vector2i = Vector2<int>;
+  using Vector2f = Vector2<float>;
+  using Matrix3x3f = Matrix<float, 3, 3>;
+  using Matrix4x4f = Matrix<float, 4, 4>;
+
   Camera() = default;
-  Camera(glm::fvec2 focal_length, glm::fvec2 principal_point,
-         glm::fmat4x4 extrinsics = glm::fmat4x4(1.f))
+  Camera(Vector2f focal_length, Vector2f principal_point,
+         Matrix4x4f extrinsics = Matrix4x4f::Identity())
       : focal_length(focal_length), principal_point(principal_point),
         extrinsics(extrinsics) {}
 
-  glm::fmat3x3 getIntrinsicMatrix() const;
-  glm::fmat4x4 getExtrinsicMatrix() const;
+  Matrix3x3f getIntrinsicMatrix() const;
+  Matrix4x4f getExtrinsicMatrix() const;
 
 private:
-  glm::fvec2 focal_length;
-  glm::fvec2 principal_point;
-  glm::fmat4x4 extrinsics;
+  Vector2f focal_length;
+  Vector2f principal_point;
+  Matrix4x4f extrinsics;
 };
