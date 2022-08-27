@@ -10,18 +10,22 @@ include_directories(third_party/stb)
 
 add_subdirectory(third_party/Catch2)
 
-add_library(Camera INTERFACE Camera.cpp)
-add_library(Image INTERFACE Image.cpp)
+add_library(Camera STATIC srcs/Camera.cpp)
+add_library(Image INTERFACE srcs/Image.hpp srcs/Pixel.h)
+add_library(Triangle INTERFACE srcs/Triangle.h)
 
 add_executable(TBRaster main.cpp)
-target_link_libraries(TBRaster glm::glm Camera)
+target_link_libraries(TBRaster glm::glm Camera Image)
 
 # Tests
 add_executable(testCamera
-        tests/testCamera.cpp
-        Camera)
-target_link_libraries(testCamera PRIVATE Catch2::Catch2WithMain)
+        tests/testCamera.cpp)
+target_link_libraries(testCamera PRIVATE Catch2::Catch2WithMain Camera)
 
 add_executable(testImage
-        Image tests/testImage.cpp)
-target_link_libraries(testImage PRIVATE Catch2::Catch2WithMain)
+        tests/testImage.cpp)
+target_link_libraries(testImage PRIVATE Catch2::Catch2WithMain Image)
+
+add_executable(testTriangle
+        tests/testTriangle.cpp)
+target_link_libraries(testTriangle PRIVATE Catch2::Catch2WithMain Triangle)
