@@ -7,6 +7,6 @@
 
 TEST_CASE("Image constructors", "[Image]") {
   RGBImage image(640, 480);
-  REQUIRE(image.getSize() == glm::ivec2(640, 480));
+  REQUIRE(image.getSize() == VectorX<2, int>(640, 480));
   REQUIRE(image.getPixels().size() == 640 * 480);
 }
