@@ -3,10 +3,16 @@
 //
 
 #pragma once
+#include "Defs.h"
 
-class Mesh {
-public:
+struct Mesh {
+  using MatrixX3i = MatrixX3<int>;
+  using MatrixX3f = MatrixX3<float>;
 
-private:
+  Mesh() = default;
+  Mesh(const MatrixX3f &vertices, const MatrixX3i &faces)
+      : vertices(vertices), faces(faces) {}
 
+  MatrixX3f vertices;
+  MatrixX3i faces;
 };

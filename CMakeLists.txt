@@ -20,7 +20,7 @@ target_link_libraries(Camera Common)
 add_library(Image INTERFACE srcs/Image.hpp srcs/Pixel.h)
 target_link_libraries(Image INTERFACE Common)
 
-add_library(Geometry INTERFACE srcs/Triangle.h srcs/BoundingBox.h)
+add_library(Geometry INTERFACE srcs/Triangle.h srcs/BoundingBox.h srcs/Mesh.h)
 target_link_libraries(Geometry INTERFACE Common)
 
 add_executable(TBRaster main.cpp)
